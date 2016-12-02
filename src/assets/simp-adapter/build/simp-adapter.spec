@@ -16,7 +16,8 @@ Requires: rsync
 Requires(post): puppet
 Requires(post): puppetserver
 Requires(post): puppetdb
-Requires(post): procps-ng
+%{?el6:Requires(post): procps}
+%{?el7:Requires(post): procps-ng}
 Requires: puppet-agent < 2.0.0
 Requires: puppet-agent >= 1.6.2
 Requires: puppet-client-tools < 2.0.0
@@ -36,7 +37,8 @@ Requires: rsync
 Requires(post): puppet
 Requires(post): puppetserver
 Requires(post): puppetdb
-Requires(post): procps-ng
+%{?el6:Requires(post): procps}
+%{?el7:Requires(post): procps-ng}
 Requires: pe-puppet-agent < 2.0.0
 Requires: pe-puppet-agent >= 1.6.2
 Requires: pe-client-tools < 2.0.0

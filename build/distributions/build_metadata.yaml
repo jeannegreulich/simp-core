@@ -22,11 +22,6 @@
 'distributions':
   'CentOS':
     '6':
-      'build': false
-      'pkg_type': 'rpm'
-      'arch':
-        - 'x86_64'
-    '7':
       'build': true
       'pkg_type': 'rpm'
       'arch':
