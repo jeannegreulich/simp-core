@@ -104,9 +104,9 @@ Requires: pupmod-trlinkin-nsswitch >= 2.1.0, pupmod-trlinkin-nsswitch < 3.0.0
 Requires: rubygem-simp-cli >= 4.4.0, rubygem-simp-cli < 5.0.0
 Requires: rubygem-simp-cli-doc >= 4.4.0, rubygem-simp-cli-doc < 5.0.0
 Requires: simp-adapter >= 1.0.0, simp-adapter < 2.0.0
-Requires: simp-environment >= 6.3.0, simp-environment < 7.0.0
+Requires: simp-environment-skeleton >= 7.0.0, simp-environment-skeleton < 8.0.0
 Requires: simp-gpgkeys >= 3.0.4, simp-gpgkeys < 4.0.0
-Requires: simp-rsync >= 6.2.1-0%{?dist}, simp-rsync < 7.0.0
+Requires: simp-rsync-skeleton >= 7.0.0, simp-rsync-skeleton < 8.0.0
 Requires: simp-utils >= 6.1.2, simp-utils < 7.0.0
 
 # SIMP Extras
