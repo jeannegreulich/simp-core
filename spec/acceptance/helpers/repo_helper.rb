@@ -69,7 +69,7 @@ module Acceptance
           repo = <<~EOM
             [simp-project_#{reponame}]
             name=simp-project_#{reponame}
-            baseurl=https://packagecloud.io/simp-project/#{reponame}/el/$releasever/$basearch
+            baseurl=https://download.simp-project.com/SIMP/yum/unstable/simp6/el/$releasever/$basearch/simp
             gpgcheck=1
             enabled=1
             gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
@@ -82,17 +82,31 @@ module Acceptance
           full_reponame = "#{reponame}_Dependencies"
           # FIXME: Use a gpgkey list appropriate for more than 6_X
           repo = <<~EOM
-            [simp-project_#{reponame}_dependencies]
-            name=simp-project_#{reponame}_dependencies
-            baseurl=https://packagecloud.io/simp-project/#{reponame}_Dependencies/el/$releasever/$basearch
+            [simp-project_#{reponame}_puppet]
+            name=simp-project_#{reponame}_puppet
+            baseurl=https://download.simp-project.com/SIMP/yum/unstable/simp6/el/$releasever/$basearch/puppet
             gpgcheck=1
             enabled=1
-            gpgkey=https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
-                   https://download.simp-project.com/simp/GPGKEYS/RPM-GPG-KEY-SIMP-6
-                   https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
+            gpgkey=https://yum.puppet.com/RPM-GPG-KEY-puppetlabs
                    https://yum.puppet.com/RPM-GPG-KEY-puppet
-                   https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
-                   https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
+            sslverify=1
+            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+            metadata_expire=300
+            [simp-project_#{reponame}_epel]
+            name=simp-project_#{reponame}_epel
+            baseurl=https://download.simp-project.com/SIMP/yum/unstable/simp6/el/$releasever/$basearch/epel
+            gpgcheck=1
+            enabled=1
+            gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-$releasever
+            sslverify=1
+            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+            metadata_expire=300
+            [simp-project_#{reponame}_postgresql]
+            name=simp-project_#{reponame}_postgresql
+            baseurl=https://download.simp-project.com/SIMP/yum/unstable/simp6/el/$releasever/$basearch/postgresql
+            gpgcheck=1
+            enabled=1
+            gpgkey=https://apt.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG-96
             sslverify=1
             sslcacert=/etc/pki/tls/certs/ca-bundle.crt
             metadata_expire=300
