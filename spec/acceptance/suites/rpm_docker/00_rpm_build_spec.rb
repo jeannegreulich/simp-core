@@ -53,13 +53,17 @@ describe 'RPM build' do
   local_basedir = File.absolute_path(Dir.pwd)
 
   # We need a normal user for building the RPMs
-  let(:build_user) { 'build_user' }
-  let(:run_cmd) { %(runuser #{build_user} -l -c ) }
 
   let(:iso_dir) { File.join(build_dir, 'ISO') }
 
   hosts.each do |host|
     let(:has_iso_dir?) { host.file_exist?(iso_dir) }
+    if docker_id(host)
+      build_user = 'build_user'
+    else
+      build_user = 'vagrant'
+    end
+    let(:run_cmd) { %(runuser #{build_user} -l -c ) }
 
     next if host[:roles].include?('disabled')
 
@@ -125,9 +129,9 @@ describe 'RPM build' do
         end
 
         it 'should set up the build user' do
-          on(host, %(echo 'Defaults:build_user !requiretty' >> /etc/sudoers))
-          on(host, %(echo 'build_user ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers))
-          on(host, %(useradd -b /home -G wheel -m -c "Build User" -s /bin/bash -U build_user))
+          on(host, %(echo 'Defaults:#{build_user} !requiretty' >> /etc/sudoers))
+          on(host, %(echo '#{build_user} ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers))
+          on(host, %(getent passwd #{build_user} > /dev/null; if [ "$?" == "1"]; then useradd -b /home -G wheel -m -c "Build User" -s /bin/bash -U #{build_user}; fi))
           on(host, %(rm -rf /etc/security/limits.d/*.conf))
 
           on(host, %(#{run_cmd} "for i in {1..5}; do { gpg2 --keyserver  hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 || gpg2 --keyserver hkp://pgp.mit.edu --recv-key 409B6B1796C275462A1703113804BB82D39DC0E3 || gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3; } && break || sleep 1; done"))

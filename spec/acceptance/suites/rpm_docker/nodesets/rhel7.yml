@@ -15,6 +15,10 @@ HOSTS:
     platform:   el-7-x86_64
     box:        generic/rhel7
     hypervisor: <%= hypervisor %>
+    mount_folders:
+      simpcore:
+        from:  ../../../
+        to:   /simp-core
     yum_repos:
       epel:
         mirrorlist: 'https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch'
