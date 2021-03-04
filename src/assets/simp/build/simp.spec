@@ -30,6 +30,7 @@ Requires: pupmod-camptocamp-kmod >= 2.5.0, pupmod-camptocamp-kmod < 3.0.0
 Requires: pupmod-camptocamp-systemd >= 2.9.0, pupmod-camptocamp-systemd < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_core >= 2.6.0, pupmod-herculesteam-augeasproviders_core < 3.0.0
 Requires: pupmod-herculesteam-augeasproviders_grub >= 3.2.0, pupmod-herculesteam-augeasproviders_grub < 4.0.0
+Requires: pupmod-herculesteam-augeasproviders_shellvar >= 4.0.0, pupmod-herculesteam-augeasproviders_shellvar < 5.0.0
 Requires: pupmod-herculesteam-augeasproviders_ssh >= 3.3.0, pupmod-herculesteam-augeasproviders_ssh < 4.0.0
 Requires: pupmod-herculesteam-augeasproviders_sysctl >= 2.5.0 pupmod-herculesteam-augeasproviders_sysctl < 3.0.0
 Requires: pupmod-onyxpoint-gpasswd >= 1.1.1, pupmod-onyxpoint-gpasswd < 2.0.0
@@ -247,6 +248,9 @@ fi
 # Post uninstall stuff
 
 %changelog
+* Wed Mar 03 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
+- Add augeasproviders_shellvar to requirements.  It is used in pupmod-simp-ssh.
+
 * Thu Feb 11 2021 Jeanne Greulich <jeanne.greulich@onyxpoint.com> - 6.6.0-1
 - Update the EL8 kickstart file with comment about changes needed for UEFI boot.
 
